@@ -1,14 +1,9 @@
-/* Error: This mixin is available from multiple global modules.
+/* Error: Undefined variable.
  *     ,
- * 2   | @use 'variables' as *;
- *     | ===================== includes mixin
- * 3   | @use 'mixins' as *;
- *     | ================== includes mixin
- * ... |
- * 62  |   @include smooth-transition(transform, 0.3s);
- *     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mixin use
+ * 186 |     color: $color-primary;
+ *     |            ^^^^^^^^^^^^^^
  *     '
- *   styles/styles.scss 62:3  root stylesheet */
+ *   styles/styles.scss 186:12  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -18,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: This mixin is available from multiple global modules.\a     \2577 \a 2   \2502  @use 'variables' as *;\a     \2502  \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  includes mixin\a 3   \2502  @use 'mixins' as *;\a     \2502  \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  includes mixin\a... \2502 \a 62  \2502    @include smooth-transition(transform, 0.3s);\a     \2502    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mixin use\a     \2575 \a   styles/styles.scss 62:3  root stylesheet";
+  content: "Error: Undefined variable.\a     \2577 \a 186 \2502      color: $color-primary;\a     \2502             ^^^^^^^^^^^^^^\a     \2575 \a   styles/styles.scss 186:12  root stylesheet";
 }

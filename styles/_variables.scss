@@ -85,12 +85,14 @@ $color-border: $border-light;
 // =============================================================================
 // Variables para mantener la consistencia tipográfica.
 
-$font-primary: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 $font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
 
-$font-size-base: 1rem;       // Equivale a 16px en la mayoria de los navegadores.
-$font-weight-normal: 400;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
 $font-weight-bold: 700;
+
+$font-size-base: 1rem;       // Equivale a 16px en la mayoria de los navegadores.
 $line-height-base: 1.6;
 
 
@@ -186,11 +188,11 @@ $box-shadow-lg: 0 0 40px 0 rgba(244, 124, 32, 0.20);
   }
 }
 
-/**
- * Mixin para transiciones suaves.
- * @param {String} $property - Propiedad CSS a animar.
- * @param {Number} $duration - Duración en segundos.
- */
-@mixin smooth-transition($property: all, $duration: 0.3s) {
-  transition: $property $duration ease;
+.trusted-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // ...resto del código
 }
+
+

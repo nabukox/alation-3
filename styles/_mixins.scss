@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use 'variables' as v;
+
 // =============================================================================
 // MIXINS UTILITARIOS
 // =============================================================================
@@ -11,23 +14,23 @@
 
 // Elevación de tarjetas con sombras
 @mixin card-elevation($level: 1) {
-  @if $level == 1 {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @if $level == 'lg' {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   } @else if $level == 2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
   } @else {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
 // Estilos base para botones
-@mixin button-style($background, $color: $white) {
+@mixin button-style($background, $color: v.$white) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: $spacing-sm $spacing-md;
+  padding: v.$spacing-sm v.$spacing-md;
   border-radius: 4px;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   text-decoration: none;
   border: none;
   cursor: pointer;
@@ -43,6 +46,34 @@
     outline-offset: 2px;
   }
 }
+
+// =============================================================================
+// BUTTONS
+// .btn-primary {
+//   @include button-style($color-primary, $white);
+//   min-width: 140px;
+//   font-size: $font-size-base;
+//   line-height: 28px;
+//   padding: 10px $spacing-md;
+
+//   &:hover {
+//     background-color: color.adjust($color-primary, $lightness: -8%);
+//   }
+// }
+
+// .btn-secondary {
+//   @include button-style(transparent, $color-primary);
+//   border: 1px solid $color-primary;
+//   min-width: 140px;
+  
+//   &:hover {
+//     background-color: $color-primary;
+//     color: $white;
+//   }
+// }
+// =============================================================================
+
+
 
 // Contenedor responsive
 @mixin container($max-width: 1200px) {

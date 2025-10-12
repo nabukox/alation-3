@@ -1,17 +1,8 @@
 @use 'sass:color';
-@use 'variables' as *;
-@use 'mixins' as *;
+@use './variables' as v;
+@use './mixins' as m;
 
-/**
- * Alation Landing Page - Main Stylesheet
- * ----------------------------------------
- * Utilizando el sistema de diseño Alation Fabric
- */
-
-// =============================================================================
-// CSS RESET & BASE STYLES
-// =============================================================================
-
+// Reset & Base
 * {
   margin: 0;
   padding: 0;
@@ -19,11 +10,10 @@
 }
 
 body {
-  font-family: $font-primary;
-  color: $color-text-base;
-  line-height: $line-height-base;
-  font-size: $font-size-base;
-  background-color: $color-background-body;
+  font-family: v.$font-primary;
+  font-weight: v.$font-weight-regular;
+  color: v.$text-body;
+  line-height: 1.5;
 }
 
 img {
@@ -44,7 +34,7 @@ button {
 .container {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding: 0 v.$spacing-md;
 }
 
 // =============================================================================
@@ -52,14 +42,14 @@ button {
 // =============================================================================
 
 .main-menu {
-  background: rgba($white, 0.80);
-  box-shadow: $box-shadow-sm;
-  padding: 0 $spacing-xl;
+  background: rgba(v.$white, 0.80);
+  box-shadow: v.$box-shadow-sm;
+  padding: 0 v.$spacing-xl;
   position: sticky;
   top: 0;
   z-index: 200;
   backdrop-filter: blur(15px);
-  @include smooth-transition(transform, 0.3s);
+  @include m.smooth-transition(transform, 0.3s);
 
   &.hide-main {
     transform: translateY(-100%);
@@ -93,7 +83,7 @@ button {
   display: flex;
   align-items: center;
   gap: 0;
-  padding-left: $spacing-xl;
+  padding-left: v.$spacing-xl;
   flex: 1;
 }
 
@@ -101,26 +91,26 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: $spacing-md $spacing-sm;
-  border-radius: $border-radius-md;
-  color: $color-secondary;
+  padding: v.$spacing-md v.$spacing-sm;
+  border-radius: v.$border-radius-md;
+  color: v.$color-secondary;
   cursor: pointer;
-  @include smooth-transition(background);
+  @include m.smooth-transition(transform, 0.3s);
 
   span {
-    font-size: $font-size-base;
-    font-weight: $font-weight-normal;
+    font-size: v.$font-size-base;
+    font-weight: v.$font-weight-medium;
     line-height: 48px;
   }
 
   svg {
     width: 16px;
     height: 8px;
-    @include smooth-transition(transform);
+    @include m.smooth-transition(transform, 0.3s);
   }
 
   &:hover {
-    background: rgba($color-primary, 0.05);
+    background: rgba(v.$color-primary, 0.05);
 
     svg {
       transform: rotate(180deg);
@@ -143,10 +133,10 @@ button {
   background: transparent;
   border: none;
   cursor: pointer;
-  @include smooth-transition(background);
+  @include m.smooth-transition(background);
 
   &:hover {
-    background: rgba($color-primary, 0.1);
+    background: rgba(v.$color-primary, 0.1);
   }
 
   svg {
@@ -160,13 +150,13 @@ button {
 // =============================================================================
 
 .nav-overlay {
-  background: rgba($white, 0.80);
-  box-shadow: $box-shadow-sm;
-  padding: $spacing-sm $spacing-xl;
+  background: rgba(v.$white, 0.80);
+  box-shadow: v.$box-shadow-sm;
+  padding: v.$spacing-sm v.$spacing-xl;
   position: relative;
   z-index: 150;
   backdrop-filter: blur(10px);
-  @include smooth-transition(all, 0.3s);
+  @include m.smooth-transition(all, 0.3s);
 
   &.is-sticky {
     position: fixed;
@@ -180,17 +170,17 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: $spacing-lg;
+  gap: v.$spacing-lg;
   flex-wrap: wrap;
 }
 
 .nav-link {
-  color: $color-secondary;
+  color: v.$color-secondary;
   text-decoration: none;
-  padding: 0 $spacing-sm;
+  padding: 0 v.$spacing-sm;
   line-height: 48px;
-  font-weight: $font-weight-normal;
-  @include smooth-transition(color);
+  font-weight: v.$font-weight-medium;
+  @include m.smooth-transition(color);
 
   &:hover {
     color: $color-primary;
@@ -202,18 +192,18 @@ button {
 // =============================================================================
 
 .hero-section {
-  background: linear-gradient(180deg, $color-primary 0%, color.adjust($color-primary, $lightness: 10%) 95.29%, $white 95.29%);
-  padding: $spacing-xl $spacing-xl 0 $spacing-xl;
+  background: linear-gradient(180deg, v.$color-primary 0%, color.adjust(v.$color-primary, $lightness: 10%) 95.29%, v.$white 95.29%);
+  padding: v.$spacing-xl v.$spacing-xl 0 v.$spacing-xl;
 }
 
 .hero-container {
   max-width: 1344px;
   margin: 0 auto;
-  background: $white;
-  border-radius: $border-radius-xl $border-radius-xl 0 0;
-  padding: $spacing-lg * 1.25 $spacing-xl * 2;
+  background: v.$white;
+  border-radius: v.$border-radius-xl v.$border-radius-xl 0 0;
+  padding: v.$spacing-lg * 1.25 v.$spacing-xl * 2;
   display: flex;
-  gap: $spacing-lg;
+  gap: v.$spacing-lg;
   align-items: flex-start;
   flex-wrap: wrap;
 }
@@ -228,16 +218,16 @@ button {
 
 .hero-title {
   font-size: 3rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.17;
   letter-spacing: -0.96px;
-  color: $color-secondary;
+  color: v.$color-secondary;
 }
 
 .hero-description {
   max-width: 400px;
-  line-height: $line-height-base;
-  color: $color-text-base;
+  line-height: v.$line-height-base;
+  color: v.$color-text-base;
 }
 
 .hero-image {
@@ -245,72 +235,47 @@ button {
   min-width: 300px;
 
   img {
-    border-radius: $border-radius-lg;
+    border-radius: v.$border-radius-lg;
     width: 100%;
   }
 }
 
-// =============================================================================
-// BUTTONS
-// =============================================================================
 
-.btn-primary {
-  @include button-style($color-primary, $white);
-  min-width: 140px;
-  font-size: $font-size-base;
-  line-height: 28px;
-  padding: 10px $spacing-md;
-
-  &:hover {
-    background-color: color.adjust($color-primary, $lightness: -8%);
-  }
-}
-
-.btn-secondary {
-  @include button-style(transparent, $color-primary);
-  border: 1px solid $color-primary;
-  min-width: 140px;
-  
-  &:hover {
-    background-color: $color-primary;
-    color: $white;
-  }
-}
 
 // =============================================================================
 // SECTIONS
 // =============================================================================
 
 .section-padding {
-  padding: $spacing-xl 0;
+  padding: v.$spacing-xl 0;
 }
 
 .section-title {
   font-size: 2.25rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.22;
   letter-spacing: -0.72px;
   text-align: center;
-  margin-bottom: $spacing-lg;
-  color: $color-secondary;
+  margin-bottom: v.$spacing-lg;
+  color: v.$color-secondary;
 }
 
 .section-title-left {
   font-size: 2.25rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.22;
   letter-spacing: -0.72px;
-  margin-bottom: $spacing-lg;
-  color: $color-secondary;
+  margin-bottom: v.$spacing-lg;
+  color: v.$color-secondary;
 }
 
 .section-subtitle {
   text-align: center;
-  margin-bottom: $spacing-lg;
+  margin-bottom: v.$spacing-lg;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  color: $color-text-base;
+  color: v.$color-text-base;
 }
 
 // =============================================================================
@@ -319,8 +284,8 @@ button {
 
 .card-row {
   display: flex;
-  gap: $spacing-lg;
-  margin-bottom: $spacing-lg;
+  gap: v.$spacing-lg;
+  margin-bottom: v.$spacing-lg;
   flex-wrap: wrap;
 }
 
@@ -328,9 +293,9 @@ button {
   flex: 1;
   min-width: 280px;
   padding: 25px 25px 53px 25px;
-  border-radius: $border-radius-lg;
-  border: 1px solid $color-primary;
-  background: $white;
+  border-radius: v.$border-radius-lg;
+  border: 1px solid v.$color-primary;
+  background: v.$white;
   display: flex;
   flex-direction: column;
 }
@@ -338,7 +303,7 @@ button {
 .feature-icon {
   width: 48px;
   height: 48px;
-  margin-bottom: $spacing-md;
+  margin-bottom: v.$spacing-md;
 }
 
 .feature-content {
@@ -349,15 +314,15 @@ button {
 
 .feature-title {
   font-size: 1.5rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.33;
   letter-spacing: -0.48px;
-  color: $color-secondary;
+  color: v.$color-secondary;
 }
 
 .feature-description {
-  line-height: $line-height-base;
-  color: $color-text-base;
+  line-height: v.$line-height-base;
+  color: v.$color-text-base;
 }
 
 // =============================================================================
@@ -380,34 +345,34 @@ button {
 }
 
 .trusted-image {
-  padding: $spacing-md;
+  padding: v.$spacing-md;
 
   img {
-    border-radius: $border-radius-lg;
+    border-radius: v.$border-radius-lg;
     width: 100%;
   }
 }
 
 .trusted-content {
-  padding: $spacing-sm $spacing-lg $spacing-lg $spacing-lg;
+  padding: v.$spacing-sm v.$spacing-lg v.$spacing-lg v.$spacing-lg;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-lg;
+  gap: v.$spacing-lg;
 }
 
 .trusted-title {
   font-size: 1.875rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.27;
   letter-spacing: -0.6px;
   text-align: center;
-  color: $color-secondary;
+  color: v.$color-secondary;
 }
 
 .trusted-text {
   text-align: center;
-  line-height: $line-height-base;
+  line-height: v.$line-height-base;
   color: $color-text-base;
 }
 
@@ -423,7 +388,7 @@ button {
 
 .product-card {
   padding: 25px;
-  @include card-elevation('lg');
+  @include m.card-elevation('lg');
   border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
@@ -489,7 +454,7 @@ button {
 
 .agent-card {
   padding: 25px;
-  @include card-elevation('lg');
+  @include m.card-elevation('lg');
   border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
@@ -534,7 +499,7 @@ button {
 
 .service-card {
   padding: 25px;
-  @include card-elevation('lg');
+  @include m.card-elevation('lg');
   border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
@@ -578,7 +543,7 @@ button {
 
 .video-card {
   padding: 25px 25px 81px 25px;
-  @include card-elevation('lg');
+  @include m.card-elevation('lg');
   border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
@@ -1098,4 +1063,8 @@ button {
   .compliance-badges {
     grid-template-columns: repeat(2, 58px);
   }
+}
+
+.elemento {
+  @include m.smooth-transition(background);
 }
