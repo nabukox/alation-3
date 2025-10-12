@@ -41,12 +41,18 @@ El sitio estará disponible en `http://localhost:3000`
 ## 📁 Estructura del Proyecto
 
 ```
+alation-3/
 ├── index.html              # HTML principal
 ├── styles/
 │   ├── _variables.scss     # Variables del Design System
-│   └── styles.scss         # Estilos principales
-├── styles.css              # CSS compilado (generado automáticamente)
-└── package.json
+│   ├── _mixins.scss       # Mixins y funciones
+│   └── styles.scss         # Estilos principales y componentes
+├── assets/
+│   └── images/            # Imágenes y recursos
+├── styles.css             # CSS compilado (generado automáticamente)
+├── styles.css.map         # Source map para desarrollo
+├── package.json           # Dependencias y scripts
+└── DESIGN-SYSTEM.md       # Documentación
 ```
 
 ---

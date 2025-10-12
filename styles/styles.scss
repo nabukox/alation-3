@@ -1,10 +1,12 @@
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
+
 /**
  * Alation Landing Page - Main Stylesheet
  * ----------------------------------------
  * Utilizando el sistema de diseño Alation Fabric
  */
-
-@import 'variables';
 
 // =============================================================================
 // CSS RESET & BASE STYLES
@@ -200,7 +202,7 @@ button {
 // =============================================================================
 
 .hero-section {
-  background: linear-gradient(180deg, $color-primary 0%, lighten($color-primary, 10%) 95.29%, $white 95.29%);
+  background: linear-gradient(180deg, $color-primary 0%, color.adjust($color-primary, $lightness: 10%) 95.29%, $white 95.29%);
   padding: $spacing-xl $spacing-xl 0 $spacing-xl;
 }
 
@@ -260,7 +262,7 @@ button {
   padding: 10px $spacing-md;
 
   &:hover {
-    background-color: darken($color-primary, 8%);
+    background-color: color.adjust($color-primary, $lightness: -8%);
   }
 }
 
@@ -363,13 +365,18 @@ button {
 // =============================================================================
 
 .trusted-card {
-  max-width: 640px;
-  margin: 0 auto;
-  border-radius: $border-radius-lg;
-  border: 1px solid $color-primary;
-  background: $white;
-  @include card-elevation('lg');
-  overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* max-width: 640px; */
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid #F57C00;
+    background: #FFFFFF;
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 0 40px 0 rgba(244, 124, 32, 0.2);
+    overflow: hidden;
 }
 
 .trusted-image {
@@ -417,7 +424,7 @@ button {
 .product-card {
   padding: 25px;
   @include card-elevation('lg');
-  border: 1px solid lighten($color-border, 5%);
+  border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
@@ -483,7 +490,7 @@ button {
 .agent-card {
   padding: 25px;
   @include card-elevation('lg');
-  border: 1px solid lighten($color-border, 5%);
+  border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
@@ -528,7 +535,7 @@ button {
 .service-card {
   padding: 25px;
   @include card-elevation('lg');
-  border: 1px solid lighten($color-border, 5%);
+  border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
@@ -572,7 +579,7 @@ button {
 .video-card {
   padding: 25px 25px 81px 25px;
   @include card-elevation('lg');
-  border: 1px solid lighten($color-border, 5%);
+  border: 1px solid color.adjust($color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
@@ -641,7 +648,7 @@ button {
 }
 
 .faq-item {
-  background: lighten($color-border, 8%);
+  background: color.adjust($color-border, $lightness: 8%);
   border-radius: $border-radius-lg;
   padding: $spacing-lg * 1.25;
 }
@@ -676,7 +683,7 @@ button {
   cursor: pointer;
 
   &:hover {
-    background: darken($white, 5%);
+    background: color.adjust($white, $lightness: -5%);
     transform: scale(1.05);
   }
 }
@@ -726,7 +733,7 @@ button {
   position: absolute;
   inset: -4px;
   border-radius: 19px;
-  background: linear-gradient(90deg, lighten($color-primary, 15%) 0%, lighten($color-accent, 10%) 33.33%, lighten($color-primary, 15%) 66.67%, lighten($color-accent, 10%) 100%);
+  background: linear-gradient(90deg, color.adjust($color-primary, $lightness: 15%) 0%, color.adjust($color-accent, $lightness: 10%) 33.33%, color.adjust($color-primary, $lightness: 15%) 66.67%, color.adjust($color-accent, $lightness: 10%) 100%);
   z-index: 0;
 }
 
@@ -863,13 +870,13 @@ button {
   @include smooth-transition(color);
 
   &:hover {
-    color: lighten($color-primary, 15%);
+    color: color.adjust($color-primary, $lightness: 15%);
   }
 }
 
 .footer-divider {
   height: 2px;
-  background: lighten($color-secondary, 15%);
+  background: color.adjust($color-secondary, $lightness: 15%);
   margin-bottom: $spacing-xl;
 }
 
@@ -888,7 +895,7 @@ button {
   @include smooth-transition(color);
 
   &:hover {
-    color: lighten($color-primary, 15%);
+    color: color.adjust($color-primary, $lightness: 15%);
   }
 }
 

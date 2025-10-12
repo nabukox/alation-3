@@ -1,3 +1,4 @@
+@use "sass:color";
 /**
  * Alation Design System - Base SCSS Variables
  * --------------------------------------------
@@ -150,7 +151,7 @@ $box-shadow-lg: 0 0 40px 0 rgba(244, 124, 32, 0.20);
   transition: background-color 0.2s ease-in-out, transform 0.1s ease;
 
   &:hover {
-    background-color: darken($background, 5%);
+    background-color: color.adjust($background, $lightness: -5%);
   }
 
   &:active {
