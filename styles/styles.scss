@@ -129,7 +129,7 @@ button {
   padding: 12px;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: v.$border-radius-circle; // Para botones pequeños
   background: transparent;
   border: none;
   cursor: pointer;
@@ -183,7 +183,7 @@ button {
   @include m.smooth-transition(color);
 
   &:hover {
-    color: $color-primary;
+    color: v.$color-primary;
   }
 }
 
@@ -201,9 +201,9 @@ button {
   margin: 0 auto;
   background: v.$white;
   border-radius: v.$border-radius-xl v.$border-radius-xl 0 0;
-  padding: v.$spacing-lg * 1.25 v.$spacing-xl * 2;
+  padding: v.$spacing-xl * 2 v.$spacing-xl * 2;
   display: flex;
-  gap: v.$spacing-lg;
+  gap: v.$spacing-xl;
   align-items: flex-start;
   flex-wrap: wrap;
 }
@@ -213,7 +213,7 @@ button {
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  gap: $spacing-lg;
+  gap: v.$spacing-lg;
 }
 
 .hero-title {
@@ -225,7 +225,6 @@ button {
 }
 
 .hero-description {
-  max-width: 400px;
   line-height: v.$line-height-base;
   color: v.$color-text-base;
 }
@@ -309,7 +308,7 @@ button {
 .feature-content {
   display: flex;
   flex-direction: column;
-  gap: $spacing-xs;
+  gap: v.$spacing-xs;
 }
 
 .feature-title {
@@ -373,7 +372,7 @@ button {
 .trusted-text {
   text-align: center;
   line-height: v.$line-height-base;
-  color: $color-text-base;
+  color: v.$color-text-base;
 }
 
 // =============================================================================
@@ -383,50 +382,50 @@ button {
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-  gap: $spacing-lg;
+  gap: v.$spacing-lg;
 }
 
 .product-card {
   padding: 25px;
   @include m.card-elevation('lg');
-  border: 1px solid color.adjust($color-border, $lightness: 5%);
+  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: v.$spacing-md;
 }
 
 .product-image {
   border-radius: 12px;
-  box-shadow: $box-shadow-md;
+  box-shadow: v.$box-shadow-md;
   width: 100%;
 }
 
 .product-title {
   font-size: 1.5rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.33;
   letter-spacing: -0.48px;
-  color: $color-secondary;
+  color: v.$color-secondary;
 }
 
 .product-description {
-  line-height: $line-height-base;
+  line-height: v.$line-height-base;
   flex-grow: 1;
-  color: $color-text-base;
+  color: v.$color-text-base;
 }
 
 .text-orange {
-  color: $color-primary;
+  color: v.$color-primary;
 }
 
 .link-arrow {
   display: flex;
   align-items: center;
   gap: 6.34px;
-  color: $color-primary;
-  font-weight: $font-weight-bold;
+  color: v.$color-primary;
+  font-weight: v.$font-weight-bold;
   text-decoration: none;
-  @include smooth-transition(gap);
+  @include m.smooth-transition(gap);
 
   &:hover {
     gap: 10px;
@@ -436,8 +435,8 @@ button {
     content: '';
     width: 8px;
     height: 8px;
-    border-right: 2px solid $color-primary;
-    border-bottom: 2px solid $color-primary;
+    border-right: 2px solid v.$color-primary;
+    border-bottom: 2px solid v.$color-primary;
     transform: rotate(-45deg);
   }
 }
@@ -449,16 +448,16 @@ button {
 .agents-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: $spacing-lg;
+  gap: v.$spacing-lg;
 }
 
 .agent-card {
   padding: 25px;
   @include m.card-elevation('lg');
-  border: 1px solid color.adjust($color-border, $lightness: 5%);
+  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: v.$spacing-md;
 
   svg {
     width: 49px;
@@ -468,16 +467,16 @@ button {
 
 .agent-title {
   font-size: 1.5rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.33;
   letter-spacing: -0.48px;
-  color: $color-secondary;
+  color: v.$color-secondary;
 }
 
 .agent-description {
-  line-height: $line-height-base;
+  line-height: v.$line-height-base;
   flex-grow: 1;
-  color: $color-text-base;
+  color: v.$color-text-base;
 }
 
 // =============================================================================
@@ -486,24 +485,24 @@ button {
 
 .platform-description {
   max-width: 1000px;
-  margin-bottom: $spacing-lg;
-  line-height: $line-height-base;
-  color: $color-text-base;
+  margin-bottom: v.$spacing-lg;
+  line-height: v.$line-height-base;
+  color: v.$color-text-base;
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: $spacing-lg;
+  gap: v.$spacing-lg;
 }
 
 .service-card {
   padding: 25px;
   @include m.card-elevation('lg');
-  border: 1px solid color.adjust($color-border, $lightness: 5%);
+  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: v.$spacing-md;
 
   svg {
     width: 49px;
@@ -513,16 +512,16 @@ button {
 
 .service-title {
   font-size: 1.5rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.33;
   letter-spacing: -0.48px;
-  color: $color-secondary;
+  color: v.$color-secondary;
 }
 
 .service-description {
-  line-height: $line-height-base;
+  line-height: v.$line-height-base;
   flex-grow: 1;
-  color: $color-text-base;
+  color: v.$color-text-base;
 }
 
 // =============================================================================
@@ -531,23 +530,24 @@ button {
 
 .customer-stories-section {
   background: url('https://api.builder.io/api/v1/image/assets/TEMP/915e445f639ed81f59a6c08ffdebd88ca3ed5013?width=2880') lightgray 50% / cover no-repeat;
-  padding: $spacing-xl * 2 $spacing-xl * 3.75;
+  padding: v.$spacing-xl * 2 v.$spacing-xl * 3.75;
 }
 
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: $spacing-lg;
-  margin-bottom: $spacing-lg;
+  gap: v.$spacing-lg;
+  margin-bottom: v.$spacing-lg;
 }
 
 .video-card {
   padding: 25px 25px 81px 25px;
   @include m.card-elevation('lg');
-  border: 1px solid color.adjust($color-border, $lightness: 5%);
+  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: v.$spacing-md;
+  background: rgba(v.$white, 0.80);
 }
 
 .video-thumbnail {
@@ -555,11 +555,36 @@ button {
 
   img {
     border-radius: 12px;
-    box-shadow: $box-shadow-md;
+    box-shadow: v.$box-shadow-md;
     width: 100%;
   }
 }
+// =============================================================================
+// BUTTONS
+.btn-primary {
+@include m.button-style(v.$color-primary, v.$white);
+ min-width: 140px;
+   font-size: v.$font-size-base;
+   line-height: 28px;
+   padding: 10px v.$spacing-md;
 
+   &:hover {
+     background-color: color.adjust(v.$color-primary, $lightness: -8%);
+   }
+}
+
+ .btn-secondary {
+  @include m.button-style(transparent, v.$color-primary);
+  border: 1px solid v.$color-primary;
+  min-width: 140px;
+
+  &:hover {
+     background-color: v.$color-primary;
+     color: v.$white;
+   }
+ }
+// =============================================================================
+// VIDEO CARD
 .play-button {
   position: absolute;
   left: 15px;
@@ -567,12 +592,12 @@ button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: $color-primary;
+  background: v.$color-primary;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  @include smooth-transition(transform);
+  @include m.smooth-transition(transform);
 
   &:hover {
     transform: scale(1.1);
@@ -580,8 +605,8 @@ button {
 }
 
 .video-quote {
-  line-height: $line-height-base;
-  color: $color-text-base;
+  line-height: v.$line-height-base;
+  color: v.$color-text-base;
 }
 
 .customer-stories-section .btn-secondary {
@@ -594,43 +619,43 @@ button {
 // =============================================================================
 
 .faq-section {
-  padding: $spacing-xl * 2 0 $spacing-xl * 2.6 0;
+  padding: v.$spacing-xl * 2 0 v.$spacing-xl * 2.6 0;
 }
 
 .faq-title {
   font-size: 1.5rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.33;
   letter-spacing: -0.48px;
-  margin-bottom: $spacing-lg * 1.25;
-  color: $color-secondary;
+  margin-bottom: v.$spacing-lg * 1.25;
+  color: v.$color-secondary;
 }
 
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: $spacing-xs;
+  gap: v.$spacing-xs;
 }
 
 .faq-item {
-  background: color.adjust($color-border, $lightness: 8%);
-  border-radius: $border-radius-lg;
-  padding: $spacing-lg * 1.25;
+  background: color.adjust(v.$color-border, $lightness: 8%);
+  border-radius: v.$border-radius-lg;
+  padding: v.$spacing-lg * 1.25;
 }
 
 .faq-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: $spacing-md;
+  gap: v.$spacing-md;
   cursor: pointer;
 }
 
 .faq-question {
-  color: $color-secondary;
-  font-size: $font-size-base;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-base;
+  color: v.$color-secondary;
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-bold;
+  line-height: v.$line-height-base;
   flex: 1;
 }
 
@@ -638,17 +663,17 @@ button {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: $white;
+  background: v.$white;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  @include smooth-transition(all, 0.3s);
+  @include m.smooth-transition(all, 0.3s);
   cursor: pointer;
 
   &:hover {
-    background: color.adjust($white, $lightness: -5%);
+    background: color.adjust(v.$white, $lightness: -5%);
     transform: scale(1.05);
   }
 }
@@ -662,14 +687,14 @@ button {
 }
 
 .faq-content {
-  color: $color-secondary;
-  line-height: $line-height-base;
+  color: v.$color-secondary;
+  line-height: v.$line-height-base;
   max-height: 0;
   overflow: hidden;
-  @include smooth-transition(max-height, 0.4s);
+  @include m.smooth-transition(max-height, 0.4s);
 
   p {
-    margin-bottom: $spacing-sm;
+    margin-bottom: v.$spacing-sm;
 
     &:last-child {
       margin-bottom: 0;
@@ -679,7 +704,7 @@ button {
 
 .faq-item.open .faq-content {
   max-height: 1000px;
-  margin-top: $spacing-lg * 1.25;
+  margin-top: v.$spacing-lg * 1.25;
 }
 
 // =============================================================================
@@ -687,7 +712,7 @@ button {
 // =============================================================================
 
 .cta-section {
-  padding: $spacing-xl * 2 $spacing-xl * 3.75;
+  padding: v.$spacing-xl * 2 v.$spacing-xl * 3.75;
   position: relative;
   display: flex;
   justify-content: center;
@@ -698,38 +723,38 @@ button {
   position: absolute;
   inset: -4px;
   border-radius: 19px;
-  background: linear-gradient(90deg, color.adjust($color-primary, $lightness: 15%) 0%, color.adjust($color-accent, $lightness: 10%) 33.33%, color.adjust($color-primary, $lightness: 15%) 66.67%, color.adjust($color-accent, $lightness: 10%) 100%);
+  background: linear-gradient(90deg, color.adjust(v.$color-primary, $lightness: 15%) 0%, color.adjust(v.$color-accent, $lightness: 10%) 33.33%, color.adjust(v.$color-primary, $lightness: 15%) 66.67%, color.adjust(v.$color-accent, $lightness: 10%) 100%);
   z-index: 0;
 }
 
 .cta-container {
   position: relative;
   z-index: 1;
-  background: $color-secondary;
-  border-radius: $border-radius-lg;
-  padding: $spacing-xl $spacing-xl * 1.6;
+  background: v.$color-secondary;
+  border-radius: v.$border-radius-lg;
+  padding: v.$spacing-xl v.$spacing-xl * 1.6;
   max-width: 1140px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-sm;
+  gap: v.$spacing-sm;
 }
 
 .cta-title {
-  color: $white;
+  color: v.$white;
   font-size: 1.875rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.27;
   letter-spacing: -0.6px;
   text-align: center;
 }
 
 .cta-description {
-  color: $white;
+  color: v.$white;
   text-align: center;
-  line-height: $line-height-base;
-  margin-bottom: $spacing-sm;
+  line-height: v.$line-height-base;
+  margin-bottom: v.$spacing-sm;
 }
 
 // =============================================================================
@@ -737,9 +762,9 @@ button {
 // =============================================================================
 
 .footer {
-  background: $color-secondary;
-  padding: $spacing-xl $spacing-xl * 3.75;
-  color: $white;
+  background: v.$color-secondary;
+  padding: v.$spacing-xl v.$spacing-xl * 3.75;
+  color: v.$white;
 }
 
 .footer-container {
@@ -749,8 +774,8 @@ button {
 
 .footer-main {
   display: flex;
-  gap: $spacing-xl * 2.35;
-  margin-bottom: $spacing-xl;
+  gap: v.$spacing-xl * 2.35;
+  margin-bottom: v.$spacing-xl;
   flex-wrap: wrap;
 }
 
@@ -758,21 +783,21 @@ button {
   max-width: 222px;
 
   svg {
-    margin-bottom: $spacing-sm;
+    margin-bottom: v.$spacing-sm;
   }
 }
 
 .footer-tagline {
-  font-size: $font-size-base;
-  line-height: $line-height-base;
-  margin-top: $spacing-sm;
+  font-size: v.$font-size-base;
+  line-height: v.$line-height-base;
+  margin-top: v.$spacing-sm;
 }
 
 .social-links {
   display: flex;
-  gap: $spacing-sm;
-  margin-top: $spacing-md;
-  margin-bottom: $spacing-xs;
+  gap: v.$spacing-sm;
+  margin-top: v.$spacing-md;
+  margin-bottom: v.$spacing-xs;
 }
 
 .social-link {
@@ -781,7 +806,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  @include smooth-transition(opacity);
+  @include m.smooth-transition(opacity);
 
   &:hover {
     opacity: 0.7;
@@ -791,14 +816,14 @@ button {
 .footer-copyright {
   font-size: 0.75rem;
   line-height: 20px;
-  margin-top: $spacing-xs;
+  margin-top: v.$spacing-xs;
 }
 
 .compliance-badges {
   display: grid;
   grid-template-columns: repeat(3, 58px);
-  gap: $spacing-md;
-  margin-top: $spacing-md;
+  gap: v.$spacing-md;
+  margin-top: v.$spacing-md;
 
   img {
     width: 58px;
@@ -809,65 +834,65 @@ button {
 .footer-links {
   flex: 1;
   display: flex;
-  gap: $spacing-xl;
+  gap: v.$spacing-xl;
   flex-wrap: wrap;
 }
 
 .footer-column {
   display: flex;
   flex-direction: column;
-  gap: $spacing-xs;
+  gap: v.$spacing-xs;
   min-width: 180px;
 }
 
 .footer-heading {
   font-size: 1.25rem;
-  font-weight: $font-weight-bold;
+  font-weight: v.$font-weight-bold;
   line-height: 1.5;
-  margin-bottom: $spacing-xs;
+  margin-bottom: v.$spacing-xs;
 }
 
 .footer-link {
-  color: $white;
+  color: v.$white;
   text-decoration: none;
   font-size: 0.875rem;
   line-height: 20px;
-  @include smooth-transition(color);
+  @include m.smooth-transition(color);
 
   &:hover {
-    color: color.adjust($color-primary, $lightness: 15%);
+    color: color.adjust(v.$color-primary, $lightness: 15%);
   }
 }
 
 .footer-divider {
   height: 2px;
-  background: color.adjust($color-secondary, $lightness: 15%);
-  margin-bottom: $spacing-xl;
+  background: color.adjust(v.$color-secondary, $lightness: 15%);
+  margin-bottom: v.$spacing-xl;
 }
 
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-md;
+  gap: v.$spacing-md;
   align-items: center;
 }
 
 .footer-bottom-link {
-  color: $white;
+  color: v.$white;
   text-decoration: none;
   font-size: 0.875rem;
   line-height: 20px;
-  @include smooth-transition(color);
+  @include m.smooth-transition(color);
 
   &:hover {
-    color: color.adjust($color-primary, $lightness: 15%);
+    color: color.adjust(v.$color-primary, $lightness: 15%);
   }
 }
 
 .privacy-choices {
   display: flex;
   align-items: center;
-  gap: $spacing-xs;
+  gap: v.$spacing-xs;
   font-size: 0.875rem;
 
   img {
@@ -882,22 +907,22 @@ button {
 
 @media (max-width: 1200px) {
   .customer-stories-section {
-    padding: $spacing-xl * 1.5 $spacing-xl;
+    padding: v.$spacing-xl * 1.5 v.$spacing-xl;
   }
   
   .cta-section {
-    padding: $spacing-xl * 1.5 $spacing-xl;
+    padding: v.$spacing-xl * 1.5 v.$spacing-xl;
   }
   
   .footer {
-    padding: $spacing-xl $spacing-xl;
+    padding: v.$spacing-xl v.$spacing-xl;
   }
 }
 
 @media (max-width: 768px) {
   .main-menu-container {
     height: auto;
-    padding: $spacing-sm 0;
+    padding: v.$spacing-sm 0;
     flex-wrap: wrap;
   }
 
@@ -905,13 +930,13 @@ button {
     order: 3;
     width: 100%;
     padding-left: 0;
-    padding-top: $spacing-sm;
+    padding-top: v.$spacing-sm;
     flex-wrap: wrap;
-    gap: $spacing-xs;
+    gap: v.$spacing-xs;
   }
 
   .menu-item {
-    padding: $spacing-sm;
+    padding: v.$spacing-sm;
 
     span {
       font-size: 0.875rem;
@@ -924,11 +949,11 @@ button {
   }
 
   .hero-section {
-    padding: $spacing-lg $spacing-md 0 $spacing-md;
+    padding: v.$spacing-lg v.$spacing-md 0 v.$spacing-md;
   }
 
   .hero-container {
-    padding: $spacing-lg $spacing-md;
+    padding: v.$spacing-lg v.$spacing-md;
     flex-direction: column;
   }
 
@@ -962,15 +987,15 @@ button {
   }
   
   .customer-stories-section {
-    padding: $spacing-xl $spacing-md;
+    padding: v.$spacing-xl v.$spacing-md;
   }
   
   .cta-section {
-    padding: $spacing-xl $spacing-md;
+    padding: v.$spacing-xl v.$spacing-md;
   }
   
   .cta-container {
-    padding: $spacing-lg $spacing-md;
+    padding: v.$spacing-lg v.$spacing-md;
   }
   
   .cta-title {
@@ -978,12 +1003,12 @@ button {
   }
   
   .footer {
-    padding: $spacing-lg $spacing-md;
+    padding: v.$spacing-lg v.$spacing-md;
   }
   
   .footer-main {
     flex-direction: column;
-    gap: $spacing-xl;
+    gap: v.$spacing-xl;
   }
   
   .footer-brand {
@@ -992,7 +1017,7 @@ button {
   
   .footer-links {
     flex-direction: column;
-    gap: $spacing-lg;
+    gap: v.$spacing-lg;
   }
   
   .faq-header {
@@ -1011,7 +1036,7 @@ button {
   }
 
   .menu-item {
-    padding: $spacing-xs;
+    padding: v.$spacing-xs;
 
     span {
       font-size: 0.75rem;
@@ -1037,11 +1062,11 @@ button {
   }
 
   .nav-container {
-    gap: $spacing-sm;
+    gap: v.$spacing-sm;
   }
 
   .nav-link {
-    padding: 0 $spacing-xs;
+    padding: 0 v.$spacing-xs;
     font-size: 0.875rem;
   }
   
