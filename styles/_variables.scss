@@ -1,0 +1,195 @@
+/**
+ * Alation Design System - Base SCSS Variables
+ * --------------------------------------------
+ *
+ * Version: 1.0
+ * Fecha: 12/10/2025
+ * Autor: Alation Design Team
+ *
+ * Descripcion:
+ * Este archivo contiene todas las variables de diseño fundamentales inspiradas
+ * en el sistema de diseño "Fabric" y la identidad de marca de Alation.
+ * Está organizado en secciones para facilitar su uso y mantenimiento.
+ *
+ * Estructura del Archivo:
+ * 1. Paleta de Colores de Marca
+ * 2. Paleta de Colores de UI (Semántica)
+ * 3. Paleta de Colores Neutrales (Grises)
+ * 4. Mapeo Funcional de Colores (Mejor Práctica)
+ * 5. Tipografía
+ * 6. Espaciado y Unidades
+ * 7. Bordes y Sombras
+ * 8. Mixins y Placeholders de Utilidad
+ */
+
+// =============================================================================
+// 1. PALETA DE COLORES DE MARCA
+// =============================================================================
+// Colores principales que definen la identidad visual de Alation.
+
+$alation-orange: #F57C00; // El color más distintivo. Para CTAs, elementos activos y resaltados clave.
+$neo-navy: #1d4289;       // Color base corporativo. Para fondos, encabezados y texto principal.
+$sun-yellow: #f2c75c;     // Color de acento energético para gráficos y elementos destacados.
+
+
+// =============================================================================
+// 2. PALETA DE COLORES DE UI (SEMÁNTICA)
+// =============================================================================
+// Colores utilizados para comunicar estados y acciones en la interfaz.
+
+$link-blue: #1764CC;       // Para todos los hipervinculos, indicando interactividad.
+$success-green: #4CAF50;   // Para mensajes de confirmacion, exito y validacion.
+$warning-cherry: #D32F2F;   // Para mensajes de error, alertas criticas y acciones destructivas.
+$info-blue: #3F51B5;        // Para banners informativos y alertas no criticas.
+
+
+// =============================================================================
+// 3. PALETA DE COLORES NEUTRALES (GRISES)
+// =============================================================================
+// La base para el contenido, fondos y bordes. Organizados de oscuro a claro.
+
+$text-body: #383838;       // Color principal para parrafos y texto largo. Alta legibilidad.
+$text-secondary: #606060;  // Para etiquetas, texto de menor jerarquia y metadatos.
+$text-subtle: #8C8C8C;      // Para texto de ayuda, placeholders y leyendas.
+$border-light: #E2E2E2;     // Para bordes sutiles y separadores de sección.
+$background-light: #FDFBF8; // Un blanco cálido y suave para el fondo principal de la página.
+$white: #FFFFFF;           // Blanco puro para fondos de tarjetas y elementos elevados.
+
+
+// =============================================================================
+// 4. MAPEO FUNCIONAL DE COLORES (MEJOR PRÁCTICA)
+// =============================================================================
+// Mapea los colores de la paleta a roles funcionales.
+// Esto permite cambiar un color de la marca (ej: $alation-orange) en un solo lugar
+// y que se actualice en toda la aplicación. Es una práctica muy recomendada.
+
+$color-primary: $alation-orange;
+$color-secondary: $neo-navy;
+$color-accent: $sun-yellow;
+
+$color-text-base: $text-body;
+$color-text-muted: $text-secondary;
+$color-link: $link-blue;
+
+$color-state-success: $success-green;
+$color-state-warning: $warning-cherry;
+$color-state-info: $info-blue;
+
+$color-background-body: $background-light;
+$color-border: $border-light;
+
+
+// =============================================================================
+// 5. TIPOGRAFÍA
+// =============================================================================
+// Variables para mantener la consistencia tipográfica.
+
+$font-primary: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+
+$font-size-base: 1rem;       // Equivale a 16px en la mayoria de los navegadores.
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$line-height-base: 1.6;
+
+
+// =============================================================================
+// 6. ESPACIADO Y UNIDADES
+// =============================================================================
+// Un sistema de espaciado basado en una unidad base para consistencia en margenes y paddings.
+
+$spacing-unit: 0.5rem; // 8px
+
+$spacing-xs: $spacing-unit;      // 8px
+$spacing-sm: $spacing-unit * 2;  // 16px
+$spacing-md: $spacing-unit * 3;  // 24px
+$spacing-lg: $spacing-unit * 4;  // 32px
+$spacing-xl: $spacing-unit * 6;  // 48px
+
+
+// =============================================================================
+// 7. BORDES Y SOMBRAS
+// =============================================================================
+// Utilidades para bordes y elevación de elementos.
+
+$border-radius: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+
+$box-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$box-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$box-shadow-lg: 0 0 40px 0 rgba(244, 124, 32, 0.20);
+
+
+// =============================================================================
+// 8. MIXINS Y PLACEHOLDERS DE UTILIDAD
+// =============================================================================
+// Bloques de código reutilizables para tareas comunes.
+
+/**
+ * Mixin para crear un boton con un estilo base.
+ * @param {Color} $background - Color de fondo del boton.
+ * @param {Color} $color - Color del texto del boton.
+ *
+ * @example
+ * .btn-primary {
+ *   @include button-style($color-primary, $white);
+ * }
+ */
+@mixin button-style($background, $color) {
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  color: $color;
+  background-color: $background;
+  border: 1px solid transparent;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+
+  &:hover {
+    background-color: darken($background, 5%);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+/**
+ * Placeholder para resetear estilos de lista.
+ * Úsalo con @extend %reset-list;
+ */
+%reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Mixin para crear cards con elevacion.
+ * @param {String} $shadow - Nivel de sombra (sm, md, lg).
+ */
+@mixin card-elevation($shadow: 'md') {
+  background: $white;
+  border-radius: $border-radius-lg;
+  
+  @if $shadow == 'sm' {
+    box-shadow: $box-shadow-sm;
+  } @else if $shadow == 'md' {
+    box-shadow: $box-shadow-md;
+  } @else if $shadow == 'lg' {
+    box-shadow: $box-shadow-lg;
+  }
+}
+
+/**
+ * Mixin para transiciones suaves.
+ * @param {String} $property - Propiedad CSS a animar.
+ * @param {Number} $duration - Duración en segundos.
+ */
+@mixin smooth-transition($property: all, $duration: 0.3s) {
+  transition: $property $duration ease;
+}

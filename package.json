@@ -1,0 +1,15 @@
+{
+  "name": "alation-landing-page",
+  "version": "1.0.0",
+  "description": "Alation Agentic Data Intelligence Platform Landing Page",
+  "scripts": {
+    "sass": "sass styles/styles.scss styles.css --watch",
+    "build:css": "sass styles/styles.scss styles.css",
+    "dev": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 3000"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
+  },
+  "dependencies": {}
+}
