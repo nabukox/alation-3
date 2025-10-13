@@ -1,5 +1,5 @@
 @use 'sass:color';
-@use 'variables' as v;
+@use './variables' as v;
 
 // =============================================================================
 // MIXINS UTILITARIOS
@@ -47,9 +47,6 @@
   }
 }
 
-
-
-
 // Contenedor responsive
 @mixin container($max-width: 1200px) {
   width: 100%;
@@ -94,4 +91,120 @@
     text-decoration: underline;
     color: color.adjust($color, $lightness: -10%);
   }
+}
+
+/**
+ * Mixin para aplicar border-radius estandarizado
+ * @param {String} $size - Tamaño del border-radius (sm, md, lg, xl, circle)
+ * 
+ * @example
+ * .card {
+ *   @include border-radius('md');
+ * }
+ */
+@mixin border-radius($size: 'md') {
+  @if $size == 'sm' {
+    border-radius: v.$border-radius-sm;
+  } @else if $size == 'md' {
+    border-radius: v.$border-radius-md;
+  } @else if $size == 'lg' {
+    border-radius: v.$border-radius-lg;
+  } @else if $size == 'xl' {
+    border-radius: v.$border-radius-xl;
+  } @else if $size == 'circle' {
+    border-radius: v.$border-radius-circle;
+  } @else {
+    border-radius: v.$border-radius-md; // fallback por defecto
+  }
+}
+
+/**
+ * Mixin para aplicar border con estilo consistente
+ * @param {String} $style - Estilo del borde (light, primary, etc.)
+ * @param {String} $radius - Tamaño del border-radius opcional
+ */
+@mixin card-border($style: 'light', $radius: 'md') {
+  @if $style == 'light' {
+    border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
+  } @else if $style == 'primary' {
+    border: 1px solid v.$color-primary;
+  } @else {
+    border: 1px solid v.$color-border;
+  }
+  
+  @include border-radius($radius);
+}
+
+/**
+ * Mixin para elevación con color personalizable
+ * @param {String} $level - Nivel de elevación (sm, md, lg, xl)
+ * @param {String} $color - Color de la sombra (neutral, primary, success, warning, error)
+ * 
+ * @example
+ * .card {
+ *   @include elevation('lg', 'primary');
+ * }
+ */
+@mixin elevation($level: 'md', $color: 'neutral') {
+  @if $color == 'primary' {
+    @if $level == 'sm' {
+      box-shadow: v.$box-shadow-primary-sm;
+    } @else if $level == 'md' {
+      box-shadow: v.$box-shadow-primary-md;
+    } @else if $level == 'lg' {
+      box-shadow: v.$box-shadow-primary-lg;
+    }
+  } @else if $color == 'success' {
+    box-shadow: v.$box-shadow-success;
+  } @else if $color == 'warning' {
+    box-shadow: v.$box-shadow-warning;
+  } @else if $color == 'error' {
+    box-shadow: v.$box-shadow-error;
+  } @else {
+    // Color neutral (por defecto)
+    @if $level == 'sm' {
+      box-shadow: v.$box-shadow-sm;
+    } @else if $level == 'md' {
+      box-shadow: v.$box-shadow-md;
+    } @else if $level == 'lg' {
+      box-shadow: v.$box-shadow-lg;
+    } @else if $level == 'xl' {
+      box-shadow: v.$box-shadow-xl;
+    }
+  }
+}
+
+/**
+ * Mixin para crear una card estándar con todas las propiedades base
+ * @param {String} $padding - Padding interno (default: 25px)
+ * @param {String} $elevation - Nivel de elevación (sm, md, lg, xl)
+ * @param {String} $elevation-color - Color de la elevación (neutral, primary, success, warning, error)
+ * @param {String} $radius - Border radius (sm, md, lg, xl)
+ * @param {String} $border-style - Estilo del borde (light, normal, primary)
+ * 
+ * @example
+ * .product-card {
+ *   @include standard-card();
+ * }
+ * 
+ * .trusted-card {
+ *   @include standard-card($elevation-color: 'primary');
+ * }
+ */
+@mixin standard-card($padding: 25px, $elevation: 'lg', $elevation-color: 'neutral', $radius: 'lg', $border-style: 'light') {
+  padding: $padding;
+  @include elevation($elevation, $elevation-color);
+  @include border-radius($radius);
+  
+  @if $border-style == 'light' {
+    border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
+  } @else if $border-style == 'primary' {
+    border: 1px solid v.$color-primary;
+  } @else {
+    border: 1px solid v.$color-border;
+  }
+  
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacing-md;
 }

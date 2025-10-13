@@ -116,6 +116,7 @@ button {
   @include m.card-elevation('lg');
   padding: v.$spacing-lg;
   border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
+  @include m.border-radius('lg'); // Solo border-radius
   display: flex;
   flex-direction: column;
   gap: v.$spacing-md;
@@ -407,14 +408,10 @@ button {
 }
 
 .feature-card-line {
+  @include m.standard-card($border-style: 'primary' , $elevation: 'sm');
   flex: 1;
   min-width: 280px;
-  padding: 25px 25px 53px 25px;
-  border-radius: v.$border-radius-lg;
-  border: 1px solid v.$color-primary;
   background: v.$white;
-  display: flex;
-  flex-direction: column;
 }
 
 .feature-icon {
@@ -498,67 +495,7 @@ button {
 // =============================================================================
 
 .product-card {
-  padding: 25px;
-  @include m.card-elevation('lg');
-  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
-  display: flex;
-  flex-direction: column;
-  gap: v.$spacing-md;
-}
-
-.product-image {
-  border-radius: 12px;
-  box-shadow: v.$box-shadow-md;
-  width: 100%;
-}
-
-.product-title {
-  font-size: 1.5rem;
-  font-weight: v.$font-weight-bold;
-  line-height: 1.33;
-  letter-spacing: -0.48px;
-  color: v.$color-secondary;
-}
-
-.product-description {
-  line-height: v.$line-height-base;
-  flex-grow: 1;
-  color: v.$color-text-base;
-}
-
-.text-orange {
-  color: v.$color-primary;
-  cursor: pointer;
-  @include m.smooth-transition(color, text-decoration-color);
-
-  &:hover {
-    color: color.adjust(v.$color-primary, $lightness: -10%);
-    text-decoration: underline;
-    text-decoration-color: color.adjust(v.$color-primary, $lightness: -10%);
-  }
-}
-
-.link-arrow {
-  display: flex;
-  align-items: center;
-  gap: 6.34px;
-  color: v.$color-primary;
-  font-weight: v.$font-weight-bold;
-  text-decoration: none;
-  @include m.smooth-transition(gap);
-
-  &:hover {
-    gap: 10px;
-  }
-
-  &::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid v.$color-primary;
-    border-bottom: 2px solid v.$color-primary;
-    transform: rotate(-45deg);
-  }
+  @include m.standard-card($elevation: 'sm');
 }
 
 // =============================================================================
@@ -566,52 +503,21 @@ button {
 // =============================================================================
 
 .agent-card {
-  padding: 25px;
-  @include m.card-elevation('lg');
-  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
-  display: flex;
-  flex-direction: column;
-  gap: v.$spacing-md;
-
+  @include m.standard-card($elevation: 'sm');
+  
   svg {
     width: 49px;
     height: 48px;
   }
 }
 
-.agent-title {
-  font-size: 1.5rem;
-  font-weight: v.$font-weight-bold;
-  line-height: 1.33;
-  letter-spacing: -0.48px;
-  color: v.$color-secondary;
-}
-
-.agent-description {
-  line-height: v.$line-height-base;
-  flex-grow: 1;
-  color: v.$color-text-base;
-}
-
 // =============================================================================
 // PLATFORM SERVICES
 // =============================================================================
 
-.platform-description {
-  max-width: 1000px;
-  margin-bottom: v.$spacing-lg;
-  line-height: v.$line-height-base;
-  color: v.$color-text-base;
-}
-
 .service-card {
-  padding: 25px;
-  @include m.card-elevation('lg');
-  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
-  display: flex;
-  flex-direction: column;
-  gap: v.$spacing-md;
-
+  @include m.standard-card();
+  
   svg {
     width: 49px;
     height: 48px;
@@ -624,6 +530,7 @@ button {
   line-height: 1.33;
   letter-spacing: -0.48px;
   color: v.$color-secondary;
+  text-align: center;
 }
 
 .service-description {
@@ -631,20 +538,30 @@ button {
   flex-grow: 1;
   color: v.$color-text-base;
 }
+.platform-description{
+  color: v.$color-text-base;
+  line-height: v.$line-height-base;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: v.$spacing-xl;
+  text-align: center;
+}
 
 // =============================================================================
 // CUSTOMER STORIES
 // =============================================================================
 
 .customer-stories-section {
-  background: url('https://api.builder.io/api/v1/image/assets/TEMP/915e445f639ed81f59a6c08ffdebd88ca3ed5013?width=2880') rgb(255, 255, 255) 100% / cover no-repeat;
+  background: url(/assets/bg-lines.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   padding: v.$spacing-xl * 2 v.$spacing-xl * 3.75;
 }
 
 .video-card {
   padding: 25px 25px 81px 25px;
   @include m.card-elevation('lg');
-  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
+  @include m.card-border('light', 'md'); // Borde light con border-radius md
   display: flex;
   flex-direction: column;
   gap: v.$spacing-md;
@@ -661,29 +578,99 @@ button {
   }
 }
 // =============================================================================
-// BUTTONS
-.btn-primary {
-@include m.button-style(v.$color-primary, v.$white);
- min-width: 140px;
-   font-size: v.$font-size-base;
-   line-height: 28px;
-   padding: 10px v.$spacing-md;
+// BUTTONS & INTERACTIVE ELEMENTS
+// =============================================================================
 
-   &:hover {
-     background-color: color.adjust(v.$color-primary, $lightness: -8%);
-   }
+/**
+ * Botón principal con estilo de marca
+ * Uso: CTAs principales, acciones importantes
+ */
+.btn-primary {
+  @include m.button-style(v.$color-primary, v.$white);
+  min-width: 140px;
+  font-size: v.$font-size-base;
+  line-height: 28px;
+  padding: 10px v.$spacing-md;
+
+  &:hover {
+    background-color: color.adjust(v.$color-primary, $lightness: -8%);
+  }
 }
 
- .btn-secondary {
+/**
+ * Botón secundario con bordes
+ * Uso: Acciones secundarias, enlaces destacados
+ */
+.btn-secondary {
   @include m.button-style(transparent, v.$color-primary);
   border: 1px solid v.$color-primary;
   min-width: 140px;
 
   &:hover {
-     background-color: v.$color-primary;
-     color: v.$white;
-   }
- }
+    background-color: v.$color-primary;
+    color: v.$white;
+  }
+}
+
+/**
+ * Enlace con flecha animada
+ * Uso: Enlaces de navegación, "Ver más", "Leer más"
+ * 
+ * @example
+ * <a href="#" class="link-arrow">
+ *   Leer más
+ *   <svg>...</svg>
+ * </a>
+ */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: v.$alation-orange;
+  text-decoration: none;
+  font-weight: v.$font-weight-medium;
+  @include m.smooth-transition(gap);
+
+  &:hover {
+    gap: 12px;
+    color: color.adjust(v.$alation-orange, $lightness: -8%);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    @include m.smooth-transition(transform);
+  }
+
+  &:hover svg {
+    transform: translateX(2px);
+  }
+}
+
+/**
+ * Botón de reproducción para videos
+ * Uso: Overlays de video, controles multimedia
+ */
+.play-button {
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: v.$color-primary;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include m.smooth-transition(transform);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 // =============================================================================
 // VIDEO CARD
 .play-button {
@@ -720,7 +707,7 @@ button {
 // =============================================================================
 
 .faq-section {
-  padding: v.$spacing-xl * 2 0 v.$spacing-xl * 2.6 0;
+  padding: 0 v.$spacing-xl * 2.6 v.$spacing-xl * 2;
 }
 
 .faq-title {
@@ -812,6 +799,9 @@ button {
 // CTA SECTION
 // =============================================================================
 
+.cta-button {
+  padding: v.$spacing-xl * 1 v.$spacing-xl * 3.75;
+}
 .cta-section {
   padding: v.$spacing-xl * 2 v.$spacing-xl * 3.75;
   position: relative;
@@ -1008,7 +998,7 @@ button {
 
 @media (max-width: 1200px) {
   .customer-stories-section {
-    padding: v.$spacing-xl * 1.5 v.$spacing-xl;
+    padding: v.$spacing-lg * 2 v.$spacing-xl;
   }
   
   .cta-section {
@@ -1072,7 +1062,7 @@ button {
   }
 
   .customer-stories-section {
-    padding: v.$spacing-xl v.$spacing-md;
+    padding: v.$spacing-lg v.$spacing-md;
   }
   
   .cta-section {

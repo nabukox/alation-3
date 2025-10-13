@@ -46,6 +46,47 @@
   justify-content: center;
 }
 
+/**
+ * Mixin para aplicar border-radius estandarizado
+ * @param {String} $size - Tamaño del border-radius (sm, md, lg, xl, circle)
+ * 
+ * @example
+ * .card {
+ *   @include border-radius('md');
+ * }
+ */
+/**
+ * Mixin para aplicar border con estilo consistente
+ * @param {String} $style - Estilo del borde (light, primary, etc.)
+ * @param {String} $radius - Tamaño del border-radius opcional
+ */
+/**
+ * Mixin para elevación con color personalizable
+ * @param {String} $level - Nivel de elevación (sm, md, lg, xl)
+ * @param {String} $color - Color de la sombra (neutral, primary, success, warning, error)
+ * 
+ * @example
+ * .card {
+ *   @include elevation('lg', 'primary');
+ * }
+ */
+/**
+ * Mixin para crear una card estándar con todas las propiedades base
+ * @param {String} $padding - Padding interno (default: 25px)
+ * @param {String} $elevation - Nivel de elevación (sm, md, lg, xl)
+ * @param {String} $elevation-color - Color de la elevación (neutral, primary, success, warning, error)
+ * @param {String} $radius - Border radius (sm, md, lg, xl)
+ * @param {String} $border-style - Estilo del borde (light, normal, primary)
+ * 
+ * @example
+ * .product-card {
+ *   @include standard-card();
+ * }
+ * 
+ * .trusted-card {
+ *   @include standard-card($elevation-color: 'primary');
+ * }
+ */
 * {
   margin: 0;
   padding: 0;
@@ -194,6 +235,7 @@ button {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   padding: 2rem;
   border: 1px solid rgb(238.75, 238.75, 238.75);
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -459,14 +501,16 @@ button {
 }
 
 .feature-card-line {
-  flex: 1;
-  min-width: 280px;
-  padding: 25px 25px 53px 25px;
+  padding: 25px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   border-radius: 16px;
   border: 1px solid #F57C00;
-  background: #FFFFFF;
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 280px;
+  background: #FFFFFF;
 }
 
 .feature-icon {
@@ -542,72 +586,18 @@ button {
 
 .product-card {
   padding: 25px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
   border: 1px solid rgb(238.75, 238.75, 238.75);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.product-image {
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  width: 100%;
-}
-
-.product-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.33;
-  letter-spacing: -0.48px;
-  color: #1d4289;
-}
-
-.product-description {
-  line-height: 1.6;
-  flex-grow: 1;
-  color: #383838;
-}
-
-.text-orange {
-  color: #F57C00;
-  cursor: pointer;
-  transition-property: color, text-decoration-color;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in-out;
-}
-.text-orange:hover {
-  color: rgb(194, 98.187755102, 0);
-  text-decoration: underline;
-  text-decoration-color: rgb(194, 98.187755102, 0);
-}
-
-.link-arrow {
-  display: flex;
-  align-items: center;
-  gap: 6.34px;
-  color: #F57C00;
-  font-weight: 700;
-  text-decoration: none;
-  transition-property: gap;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in-out;
-}
-.link-arrow:hover {
-  gap: 10px;
-}
-.link-arrow::after {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid #F57C00;
-  border-bottom: 2px solid #F57C00;
-  transform: rotate(-45deg);
-}
-
 .agent-card {
   padding: 25px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
   border: 1px solid rgb(238.75, 238.75, 238.75);
   display: flex;
   flex-direction: column;
@@ -618,30 +608,10 @@ button {
   height: 48px;
 }
 
-.agent-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.33;
-  letter-spacing: -0.48px;
-  color: #1d4289;
-}
-
-.agent-description {
-  line-height: 1.6;
-  flex-grow: 1;
-  color: #383838;
-}
-
-.platform-description {
-  max-width: 1000px;
-  margin-bottom: 2rem;
-  line-height: 1.6;
-  color: #383838;
-}
-
 .service-card {
   padding: 25px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
   border: 1px solid rgb(238.75, 238.75, 238.75);
   display: flex;
   flex-direction: column;
@@ -658,6 +628,7 @@ button {
   line-height: 1.33;
   letter-spacing: -0.48px;
   color: #1d4289;
+  text-align: center;
 }
 
 .service-description {
@@ -666,8 +637,19 @@ button {
   color: #383838;
 }
 
+.platform-description {
+  color: #383838;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
 .customer-stories-section {
-  background: url("https://api.builder.io/api/v1/image/assets/TEMP/915e445f639ed81f59a6c08ffdebd88ca3ed5013?width=2880") rgb(255, 255, 255) 100%/cover no-repeat;
+  background: url(/assets/bg-lines.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 6rem 11.25rem;
 }
 
@@ -675,6 +657,7 @@ button {
   padding: 25px 25px 81px 25px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border: 1px solid rgb(238.75, 238.75, 238.75);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -690,6 +673,10 @@ button {
   width: 100%;
 }
 
+/**
+ * Botón principal con estilo de marca
+ * Uso: CTAs principales, acciones importantes
+ */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -720,6 +707,10 @@ button {
   background-color: rgb(204.2, 103.3502040816, 0);
 }
 
+/**
+ * Botón secundario con bordes
+ * Uso: Acciones secundarias, enlaces destacados
+ */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -747,6 +738,67 @@ button {
 .btn-secondary:hover {
   background-color: #F57C00;
   color: #FFFFFF;
+}
+
+/**
+ * Enlace con flecha animada
+ * Uso: Enlaces de navegación, "Ver más", "Leer más"
+ * 
+ * @example
+ * <a href="#" class="link-arrow">
+ *   Leer más
+ *   <svg>...</svg>
+ * </a>
+ */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #F57C00;
+  text-decoration: none;
+  font-weight: 500;
+  transition-property: gap;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+.link-arrow:hover {
+  gap: 12px;
+  color: rgb(204.2, 103.3502040816, 0);
+}
+.link-arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+.link-arrow:hover svg {
+  transform: translateX(2px);
+}
+
+/**
+ * Botón de reproducción para videos
+ * Uso: Overlays de video, controles multimedia
+ */
+.play-button {
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #F57C00;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+.play-button:hover {
+  transform: scale(1.1);
 }
 
 .play-button {
@@ -780,7 +832,7 @@ button {
 }
 
 .faq-section {
-  padding: 6rem 0 7.8rem 0;
+  padding: 0 7.8rem 6rem;
 }
 
 .faq-title {
@@ -866,6 +918,10 @@ button {
 .faq-item.open .faq-content {
   max-height: 1000px;
   margin-top: 2.5rem;
+}
+
+.cta-button {
+  padding: 3rem 11.25rem;
 }
 
 .cta-section {
@@ -1056,7 +1112,7 @@ button {
 
 @media (max-width: 1200px) {
   .customer-stories-section {
-    padding: 4.5rem 3rem;
+    padding: 4rem 3rem;
   }
   .cta-section {
     padding: 4.5rem 3rem;
@@ -1107,7 +1163,7 @@ button {
     font-size: 1.75rem;
   }
   .customer-stories-section {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
   .cta-section {
     padding: 3rem 1.5rem;
