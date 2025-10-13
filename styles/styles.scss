@@ -38,6 +38,124 @@ button {
 }
 
 // =============================================================================
+// GRID SYSTEM - Agnostic & Scalable
+// =============================================================================
+
+// Grid Container Base
+.grid {
+  display: grid;
+
+  // Column Variations
+  &-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  &-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  &-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  &-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  &-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+  // Auto-fit/fill responsive grids
+  &-auto {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  &-auto-sm {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  &-auto-lg {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+
+  // Gap Variations
+  &-gap-xs { gap: v.$spacing-xs; }
+  &-gap-sm { gap: v.$spacing-sm; }
+  &-gap-md { gap: v.$spacing-md; }
+  &-gap-lg { gap: v.$spacing-lg; }
+  &-gap-xl { gap: v.$spacing-xl; }
+}
+
+// Grid Item Utilities
+.grid-item {
+  // Column Span
+  &-span-1 { grid-column: span 1; }
+  &-span-2 { grid-column: span 2; }
+  &-span-3 { grid-column: span 3; }
+  &-span-4 { grid-column: span 4; }
+  &-span-6 { grid-column: span 6; }
+  &-span-full { grid-column: 1 / -1; }
+
+  // Row Span
+  &-row-span-2 { grid-row: span 2; }
+  &-row-span-3 { grid-row: span 3; }
+}
+
+// Responsive Grid Utilities
+@media (min-width: 769px) {
+  .grid-cols-2\@md { grid-template-columns: repeat(2, 1fr); }
+  .grid-cols-3\@md { grid-template-columns: repeat(3, 1fr); }
+  .grid-cols-4\@md { grid-template-columns: repeat(4, 1fr); }
+
+  .grid-item-span-2\@md { grid-column: span 2; }
+  .grid-item-span-3\@md { grid-column: span 3; }
+  .grid-item-span-full\@md { grid-column: 1 / -1; }
+}
+
+@media (min-width: 992px) {
+  .grid-cols-2\@lg { grid-template-columns: repeat(2, 1fr); }
+  .grid-cols-3\@lg { grid-template-columns: repeat(3, 1fr); }
+  .grid-cols-4\@lg { grid-template-columns: repeat(4, 1fr); }
+  .grid-cols-6\@lg { grid-template-columns: repeat(6, 1fr); }
+
+  .grid-item-span-2\@lg { grid-column: span 2; }
+  .grid-item-span-3\@lg { grid-column: span 3; }
+  .grid-item-span-4\@lg { grid-column: span 4; }
+  .grid-item-span-full\@lg { grid-column: 1 / -1; }
+}
+
+// Base Card Component (Agnostic)
+.card {
+  @include m.card-elevation('lg');
+  padding: v.$spacing-lg;
+  border: 1px solid color.adjust(v.$color-border, $lightness: 5%);
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacing-md;
+  @include m.smooth-transition(transform);
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: v.$border-radius-md;
+    margin-bottom: v.$spacing-sm;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: v.$spacing-sm;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: v.$font-weight-bold;
+    color: v.$color-secondary;
+    margin-bottom: v.$spacing-sm;
+  }
+
+  &__description {
+    color: v.$color-text-base;
+    line-height: v.$line-height-base;
+    flex-grow: 1;
+  }
+
+  &__link {
+    margin-top: auto;
+  }
+}
+
+// =============================================================================
 // MAIN MENU (PRINCIPAL)
 // =============================================================================
 
@@ -379,12 +497,6 @@ button {
 // PRODUCTS GRID
 // =============================================================================
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-  gap: v.$spacing-lg;
-}
-
 .product-card {
   padding: 25px;
   @include m.card-elevation('lg');
@@ -416,6 +528,14 @@ button {
 
 .text-orange {
   color: v.$color-primary;
+  cursor: pointer;
+  @include m.smooth-transition(color, text-decoration-color);
+
+  &:hover {
+    color: color.adjust(v.$color-primary, $lightness: -10%);
+    text-decoration: underline;
+    text-decoration-color: color.adjust(v.$color-primary, $lightness: -10%);
+  }
 }
 
 .link-arrow {
@@ -444,12 +564,6 @@ button {
 // =============================================================================
 // AGENTS GRID
 // =============================================================================
-
-.agents-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: v.$spacing-lg;
-}
 
 .agent-card {
   padding: 25px;
@@ -490,12 +604,6 @@ button {
   color: v.$color-text-base;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: v.$spacing-lg;
-}
-
 .service-card {
   padding: 25px;
   @include m.card-elevation('lg');
@@ -529,15 +637,8 @@ button {
 // =============================================================================
 
 .customer-stories-section {
-  background: url('https://api.builder.io/api/v1/image/assets/TEMP/915e445f639ed81f59a6c08ffdebd88ca3ed5013?width=2880') lightgray 50% / cover no-repeat;
+  background: url('https://api.builder.io/api/v1/image/assets/TEMP/915e445f639ed81f59a6c08ffdebd88ca3ed5013?width=2880') rgb(255, 255, 255) 100% / cover no-repeat;
   padding: v.$spacing-xl * 2 v.$spacing-xl * 3.75;
-}
-
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: v.$spacing-lg;
-  margin-bottom: v.$spacing-lg;
 }
 
 .video-card {
@@ -969,23 +1070,7 @@ button {
   .section-title-left {
     font-size: 1.75rem;
   }
-  
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .agents-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .video-grid {
-    grid-template-columns: 1fr;
-  }
-  
+
   .customer-stories-section {
     padding: v.$spacing-xl v.$spacing-md;
   }
