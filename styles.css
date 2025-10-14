@@ -46,77 +46,6 @@
   justify-content: center;
 }
 
-/**
- * Mixin para aplicar border-radius estandarizado
- * @param {String} $size - Tamaño del border-radius (sm, md, lg, xl, circle)
- * 
- * @example
- * .card {
- *   @include border-radius('md');
- * }
- */
-/**
- * Mixin para aplicar border con estilo consistente
- * @param {String} $style - Estilo del borde (light, primary, etc.)
- * @param {String} $radius - Tamaño del border-radius opcional
- */
-/**
- * Mixin para elevación con color personalizable
- * @param {String} $level - Nivel de elevación (sm, md, lg, xl)
- * @param {String} $color - Color de la sombra (neutral, primary, success, warning, error)
- * 
- * @example
- * .card {
- *   @include elevation('lg', 'primary');
- * }
- */
-/**
- * Mixin para crear una card estándar con todas las propiedades base
- * @param {String} $padding - Padding interno (default: 25px)
- * @param {String} $elevation - Nivel de elevación (sm, md, lg, xl)
- * @param {String} $elevation-color - Color de la elevación (neutral, primary, success, warning, error)
- * @param {String} $radius - Border radius (sm, md, lg, xl)
- * @param {String} $border-style - Estilo del borde (light, normal, primary)
- * 
- * @example
- * .product-card {
- *   @include standard-card();
- * }
- * 
- * .trusted-card {
- *   @include standard-card($elevation-color: 'primary');
- * }
- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 400;
-  color: #383838;
-  line-height: 1.5;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
 .grid {
   display: grid;
 }
@@ -231,6 +160,104 @@ button {
     grid-column: 1/-1;
   }
 }
+/**
+ * Mixin para aplicar border-radius estandarizado
+ * @param {String} $size - Tamaño del border-radius (sm, md, lg, xl, circle)
+ * 
+ * @example
+ * .card {
+ *   @include border-radius('md');
+ * }
+ */
+/**
+ * Mixin para aplicar border con estilo consistente
+ * @param {String} $style - Estilo del borde (light, primary, etc.)
+ * @param {String} $radius - Tamaño del border-radius opcional
+ */
+/**
+ * Mixin para elevación con color personalizable
+ * @param {String} $level - Nivel de elevación (sm, md, lg, xl)
+ * @param {String} $color - Color de la sombra (neutral, primary, success, warning, error)
+ * 
+ * @example
+ * .card {
+ *   @include elevation('lg', 'primary');
+ * }
+ */
+/**
+ * Mixin para crear una card estándar con todas las propiedades base
+ * @param {String} $padding - Padding interno (default: 25px)
+ * @param {String} $elevation - Nivel de elevación (sm, md, lg, xl)
+ * @param {String} $elevation-color - Color de la elevación (neutral, primary, success, warning, error)
+ * @param {String} $radius - Border radius (sm, md, lg, xl)
+ * @param {String} $border-style - Estilo del borde (light, normal, primary)
+ * 
+ * @example
+ * .product-card {
+ *   @include standard-card();
+ * }
+ * 
+ * .trusted-card {
+ *   @include standard-card($elevation-color: 'primary');
+ * }
+ */
+/**
+ * Mixin para grid con última columna full-width en responsive
+ * @param {Number} $desktop-columns - Número de columnas en desktop
+ * @param {String} $break-at - Breakpoint donde se rompe a full-width ('sm', 'md', 'lg')
+ * 
+ * @example
+ * .video-cards-grid {
+ *   @include grid-with-last-full(3, 'md');
+ * }
+ */
+/**
+ * Clases utilitarias para comportamiento de última columna
+ */
+@media (min-width: 768px) {
+  .last-full .grid-item:last-child {
+    grid-column: 1/-1;
+  }
+}
+
+@media (min-width: 768px) {
+  .last-center .grid-item:last-child:nth-child(odd) {
+    grid-column: 1/-1;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  color: #383838;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 .card {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   padding: 2rem;
@@ -273,7 +300,7 @@ button {
 
 .main-menu {
   background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   padding: 0 3rem;
   position: sticky;
   top: 0;
@@ -324,6 +351,7 @@ button {
   border-radius: 8px;
   color: #1d4289;
   cursor: pointer;
+  position: relative;
   transition-property: transform, 0.3s;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
@@ -345,6 +373,131 @@ button {
 }
 .menu-item:hover svg {
   transform: rotate(180deg);
+}
+.menu-item.has-megamenu:hover .megamenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.megamenu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  transform: translateX(0) translateY(-2px);
+  width: 919px;
+  background: #FFFFFF;
+  border: 1px solid #DCE2E7;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition-property: opacity, visibility, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+  margin-top: 1rem;
+  z-index: 1000;
+}
+
+.megamenu-header {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: rgba(245, 124, 0, 0.1);
+  border-radius: 24px 24px 0 0;
+}
+.megamenu-header-img {
+  width: 216px;
+  height: 134px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+.megamenu-header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.megamenu-header-title {
+  color: #1d4289;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+}
+.megamenu-header-description {
+  color: #606060;
+  font-size: 14px;
+  line-height: 18px;
+}
+.megamenu-header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #F57C00;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+.megamenu-header-link:hover {
+  color: rgb(194, 98.187755102, 0);
+}
+.megamenu-header-link .arrow-icon {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  display: inline-block;
+}
+
+.megamenu-body {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 0 1rem;
+}
+
+.megamenu-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.megamenu-column-title {
+  color: #383838;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.megamenu-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  color: #1d4289;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+.megamenu-item:hover {
+  background-color: rgba(29, 66, 137, 0.05);
+}
+
+.megamenu-icon {
+  width: 25px;
+  height: 24px;
+  background-color: #E5E7EB;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .main-menu-actions {
@@ -376,7 +529,7 @@ button {
 
 .nav-overlay {
   background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   padding: 1rem 3rem;
   position: relative;
   z-index: 150;
@@ -502,9 +655,9 @@ button {
 
 .feature-card-line {
   padding: 25px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   border-radius: 16px;
-  border: 1px solid #F57C00;
+  border: 1px solid rgb(238.75, 238.75, 238.75);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -530,7 +683,7 @@ button {
   font-weight: 700;
   line-height: 1.33;
   letter-spacing: -0.48px;
-  color: #1d4289;
+  color: #383838;
 }
 
 .feature-description {
@@ -549,7 +702,7 @@ button {
   background: #FFFFFF;
   background: #FFFFFF;
   border-radius: 16px;
-  box-shadow: 0 0 40px 0 rgba(244, 124, 32, 0.2);
+  box-shadow: 0 0 40px 0 rgba(245, 124, 0, 0.2);
   overflow: hidden;
 }
 
@@ -586,7 +739,7 @@ button {
 
 .product-card {
   padding: 25px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   border: 1px solid rgb(238.75, 238.75, 238.75);
   display: flex;
@@ -596,7 +749,7 @@ button {
 
 .agent-card {
   padding: 25px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   border: 1px solid rgb(238.75, 238.75, 238.75);
   display: flex;
@@ -610,7 +763,7 @@ button {
 
 .service-card {
   padding: 25px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   border: 1px solid rgb(238.75, 238.75, 238.75);
   display: flex;
@@ -628,7 +781,7 @@ button {
   line-height: 1.33;
   letter-spacing: -0.48px;
   color: #1d4289;
-  text-align: center;
+  text-align: left;
 }
 
 .service-description {
@@ -655,13 +808,25 @@ button {
 
 .video-card {
   padding: 25px 25px 81px 25px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
   border: 1px solid rgb(238.75, 238.75, 238.75);
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   background: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 1200px) {
+  .video-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
 }
 
 .video-thumbnail {
@@ -669,10 +834,22 @@ button {
 }
 .video-thumbnail img {
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
+/* --- Animación para el Brillo del Botón --- */
+@keyframes shine-animation {
+  0% {
+    background-position: 200% 0;
+  }
+  25% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
 /**
  * Botón principal con estilo de marca
  * Uso: CTAs principales, acciones importantes
@@ -801,6 +978,15 @@ button {
   transform: scale(1.1);
 }
 
+.btn-shine {
+  /* 1. El degradado diagonal con los colores solicitados */
+  background-image: linear-gradient(135deg, #E3682A 25%, #FD8B00 50%, #E3682A 75%);
+  /* 2. Hacemos el fondo el doble de ancho para poder moverlo */
+  background-size: 200% 100%;
+  /* 3. Aplicamos la animación de brillo */
+  animation: shine-animation 3s linear infinite;
+}
+
 .play-button {
   position: absolute;
   left: 15px;
@@ -851,9 +1037,12 @@ button {
 }
 
 .faq-item {
-  background: rgb(246.4, 246.4, 246.4);
+  background: rgb(244.6837349398, 247.4698795181, 252.8162650602);
   border-radius: 16px;
   padding: 2.5rem;
+}
+.faq-item:hover {
+  background: rgb(223.6385542169, 232.1084337349, 248.3614457831);
 }
 
 .faq-header {
@@ -894,9 +1083,15 @@ button {
 
 .faq-item.open .faq-toggle {
   transform: rotate(180deg);
+  background-color: hsl(219.4444444444, 65.0602409639%, 102.5490196078%);
 }
 .faq-item.open .faq-toggle:hover {
   transform: rotate(180deg) scale(1.05);
+  background-color: hsl(219.4444444444, 65.0602409639%, 122.5490196078%);
+}
+
+.open {
+  background-color: rgb(223.6385542169, 232.1084337349, 248.3614457831);
 }
 
 .faq-content {
@@ -932,19 +1127,39 @@ button {
   align-items: center;
 }
 
-.cta-gradient {
-  position: absolute;
-  inset: -4px;
-  border-radius: 19px;
-  background: linear-gradient(90deg, rgb(255, 161.9040816327, 66.5) 0%, rgb(245.7670454545, 215.2272727273, 139.2329545455) 33.33%, rgb(255, 161.9040816327, 66.5) 66.67%, rgb(245.7670454545, 215.2272727273, 139.2329545455) 100%);
-  z-index: 0;
+/* Creamos la animación del degradado */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.cta-gradient-border {
+  overflow: hidden;
+  /* 1. Definimos el radio de la esquina. */
+  border-radius: 16px;
+  /* 2. El 'padding' ahora define el grosor de nuestro borde. */
+  padding: 0px;
+  /* 3. Aplicamos los dos fondos en capas: */
+  background: linear-gradient(white, white) padding-box, linear-gradient(91deg, rgb(255, 162, 67), rgb(139, 246, 233), rgb(255, 162, 67), rgb(139, 243, 246)) border-box;
+  /* Esto es opcional pero puede ayudar en algunos navegadores */
+  border: 5px solid transparent;
+  /* 4. Hacemos el fondo del degradado más grande que el elemento */
+  background-size: 200% 100%;
+  /* 5. Aplicamos la animación */
+  animation: gradient-animation 4s ease-in-out infinite;
 }
 
 .cta-container {
   position: relative;
   z-index: 1;
   background: #1d4289;
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 3rem 4.8rem;
   max-width: 1140px;
   width: 100%;

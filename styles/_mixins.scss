@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use './grids' as g;
 @use './variables' as v;
 
 // =============================================================================
@@ -208,3 +209,68 @@
   flex-direction: column;
   gap: v.$spacing-md;
 }
+
+/**
+ * Mixin para grid con última columna full-width en responsive
+ * @param {Number} $desktop-columns - Número de columnas en desktop
+ * @param {String} $break-at - Breakpoint donde se rompe a full-width ('sm', 'md', 'lg')
+ * 
+ * @example
+ * .video-cards-grid {
+ *   @include grid-with-last-full(3, 'md');
+ * }
+ */
+@mixin grid-with-last-full($desktop-columns: 3, $break-at: 'md') {
+  display: grid;
+  gap: v.$spacing-md;
+  
+  // Mobile: siempre 1 columna
+  grid-template-columns: 1fr;
+  
+  @include responsive('md') {
+    grid-template-columns: repeat(2, 1fr);
+    gap: v.$spacing-lg;
+  }
+  
+  @include responsive('lg') {
+    grid-template-columns: repeat($desktop-columns, 1fr);
+    gap: v.$spacing-xl;
+    
+    // Si hay un número impar de items, el último ocupa full width
+    @if $desktop-columns > 2 {
+      &.has-odd-items {
+        .grid-item:last-child:nth-child(#{$desktop-columns}n + #{($desktop-columns + 1) / 2}) {
+          grid-column: 1 / -1;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Clases utilitarias para comportamiento de última columna
+ */
+@mixin last-item-behaviors() {
+  // Última card ocupa todo el ancho
+  .last-full {
+    .grid-item:last-child {
+      @include responsive('md') {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+  
+  // Última card se centra si queda sola
+  .last-center {
+    .grid-item:last-child:nth-child(odd) {
+      @include responsive('md') {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+// Generar las clases utilitarias
+@include last-item-behaviors();

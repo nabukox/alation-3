@@ -417,3 +417,34 @@ sass --watch styles/styles.scss:styles.css --style expanded --verbose
   }
 }
 ```
+
+### Layout Responsive con Breakpoints Específicos
+
+```scss
+.product-grid {
+  // Mobile (< 576px): 1 columna
+  @include m.flex-grid(1, v.$spacing-md);
+  
+  // Teléfonos grandes (>= 576px): 1 columna con más espacio
+  @include m.responsive('sm') {
+    gap: v.$spacing-lg;
+  }
+  
+  // Tablets (>= 768px): 2 columnas
+  @include m.responsive('md') {
+    @include m.flex-grid(2, v.$spacing-lg);
+  }
+  
+  // Laptops (>= 992px): 3 columnas
+  @include m.responsive('lg') {
+    @include m.flex-grid(3, v.$spacing-xl);
+  }
+  
+  // Desktops (>= 1200px): 4 columnas con contenedor centrado
+  @include m.responsive('xl') {
+    @include m.flex-grid(4, v.$spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+```
