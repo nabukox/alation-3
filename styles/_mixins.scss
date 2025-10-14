@@ -274,3 +274,61 @@
 
 // Generar las clases utilitarias
 @include last-item-behaviors();
+
+/**
+ * Mixin para typography responsive
+ * @param {String} $mobile - Tamaño en móvil
+ * @param {String} $tablet - Tamaño en tablet (opcional)
+ * @param {String} $desktop - Tamaño en desktop (opcional)
+ * @param {Number} $line-height - Line height (opcional)
+ */
+@mixin responsive-text($mobile, $tablet: null, $desktop: null, $line-height: v.$line-height-normal) {
+  font-size: $mobile;
+  line-height: $line-height;
+  
+  @if $tablet {
+    @include responsive('md') {
+      font-size: $tablet;
+    }
+  }
+  
+  @if $desktop {
+    @include responsive('lg') {
+      font-size: $desktop;
+    }
+  }
+}
+
+/**
+ * Mixins predefinidos para títulos comunes
+ */
+@mixin hero-title {
+  @include responsive-text(
+    v.$font-size-3xl,     // 30px mobile
+    v.$font-size-4xl,     // 36px tablet  
+    v.$font-size-5xl,     // 48px desktop
+    v.$line-height-tight
+  );
+  font-weight: v.$font-weight-bold;
+  letter-spacing: -0.02em;
+}
+
+@mixin section-title {
+  @include responsive-text(
+    v.$font-size-2xl,     // 24px mobile
+    v.$font-size-3xl,     // 30px tablet
+    v.$font-size-4xl,     // 36px desktop
+    v.$line-height-tight
+  );
+  font-weight: v.$font-weight-bold;
+}
+
+@mixin card-title {
+  @include responsive-text(
+    v.$font-size-lg,      // 18px mobile
+    v.$font-size-xl,      // 20px tablet
+    v.$font-size-2xl,     // 24px desktop
+    v.$line-height-snug
+  );
+  font-weight: v.$font-weight-bold;
+}

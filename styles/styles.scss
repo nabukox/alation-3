@@ -13,7 +13,14 @@ body {
   font-family: v.$font-primary;
   font-weight: v.$font-weight-regular;
   color: v.$text-body;
-  line-height: 1.5;
+  line-height: v.$line-height-normal;
+  
+  // Font size base responsive
+  font-size: v.$font-size-sm;        // 14px móvil
+  
+  @include m.responsive('md') {
+    font-size: v.$font-size-base;    // 16px tablet+
+  }
 }
 
 img {
@@ -37,6 +44,41 @@ button {
   padding: 0 v.$spacing-md;
 }
 
+
+// =============================================================================
+// LAYOUT - CONTAINER (RESPONSIVE)
+// =============================================================================
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  
+  // Mobile first
+  padding: 0 v.$spacing-sm;          // 16px en móvil
+  
+  @include m.responsive('sm') {       // >= 576px
+    max-width: 540px;
+    padding: 0 v.$spacing-md;         // 24px en móvil grande
+  }
+  
+  @include m.responsive('md') {       // >= 768px
+    max-width: 720px;
+  }
+  
+  @include m.responsive('lg') {       // >= 992px
+    max-width: 960px;
+    padding: 0 v.$spacing-lg;         // 32px en laptop
+  }
+  
+  @include m.responsive('xl') {       // >= 1200px
+    max-width: 1140px;
+  }
+  
+  @include m.responsive('xxl') {      // >= 1400px
+    max-width: 1320px;
+    padding: 0 v.$spacing-xl;         // 48px en desktop grande
+  }
+}
 
 // Base Card Component (Agnostic)
 .card {
@@ -74,7 +116,7 @@ button {
 
   &__description {
     color: v.$color-text-base;
-    line-height: v.$line-height-base;
+    line-height: v.$line-height-normal;
     flex-grow: 1;
   }
 
@@ -381,41 +423,80 @@ button {
   margin: 0 auto;
   background: v.$white;
   border-radius: v.$border-radius-xl v.$border-radius-xl 0 0;
-  padding: v.$spacing-xl * 2 v.$spacing-xl * 2;
+  
+  // Responsive padding y layout
+  padding: v.$spacing-lg v.$spacing-md;
   display: flex;
-  gap: v.$spacing-xl;
+  flex-direction: column;
+  gap: v.$spacing-lg;
   align-items: flex-start;
-  flex-wrap: wrap;
+  
+  @include m.responsive('md') {
+    padding: v.$spacing-xl v.$spacing-lg;
+    flex-direction: row;
+    gap: v.$spacing-xl;
+  }
+  
+  @include m.responsive('lg') {
+    padding: calc(v.$spacing-xl * 1.5) calc(v.$spacing-xl * 1.5);
+  }
+  
+  @include m.responsive('xl') {
+    padding: calc(v.$spacing-xl * 2) calc(v.$spacing-xl * 2);
+  }
+}
+
+.hero-title {
+  @include m.hero-title;
+  color: v.$color-secondary;
+  margin-bottom: v.$spacing-sm;
+}
+
+.hero-description {
+  @include m.responsive-text(
+    v.$font-size-base,    // 16px móvil
+    v.$font-size-lg,      // 18px tablet
+    v.$font-size-xl       // 20px desktop
+  );
+  color: v.$text-body;
+  margin-bottom: v.$spacing-md;
+  
+  // Responsive max-width para legibilidad
+  max-width: 100%;
+  
+  @include m.responsive('md') {
+    max-width: 500px;
+  }
 }
 
 .hero-content {
   flex: 1;
-  min-width: 300px;
+  min-width: 0; // Importante para flexbox
+  
   display: flex;
   flex-direction: column;
-  gap: v.$spacing-lg;
-}
-
-.hero-title {
-  font-size: 3rem;
-  font-weight: v.$font-weight-bold;
-  line-height: 1.17;
-  letter-spacing: -0.96px;
-  color: v.$color-secondary;
-}
-
-.hero-description {
-  line-height: v.$line-height-base;
-  color: v.$color-text-base;
+  gap: v.$spacing-md;
+  
+  @include m.responsive('md') {
+    min-width: 300px;
+    gap: v.$spacing-lg;
+  }
 }
 
 .hero-image {
-  flex: 1;
-  min-width: 300px;
-
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 500px;
+  
+  @include m.responsive('md') {
+    width: 50%;
+    max-width: none;
+  }
+  
   img {
-    border-radius: v.$border-radius-lg;
     width: 100%;
+    height: auto;
+    display: block;
   }
 }
 
@@ -449,12 +530,39 @@ button {
 }
 
 .section-subtitle {
+  @include m.responsive-text(
+    v.$font-size-sm,      // 14px móvil
+    v.$font-size-base,    // 16px tablet
+    v.$font-size-lg       // 18px desktop
+  );
   text-align: center;
   margin-bottom: v.$spacing-lg;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   color: v.$color-text-base;
+}
+
+// =============================================================================
+// CARD TITLES - RESPONSIVE
+// =============================================================================
+
+.product-title,
+.agent-title,
+.service-title {
+  @include m.card-title;
+  color: v.$color-secondary;
+  margin-bottom: v.$spacing-sm;
+}
+
+.feature-title {
+  @include m.responsive-text(
+    v.$font-size-lg,      // 18px móvil
+    v.$font-size-xl       // 20px tablet+
+  );
+  font-weight: v.$font-weight-bold;
+  color: v.$color-secondary;
+  margin-bottom: v.$spacing-xs;
 }
 
 // =============================================================================
@@ -496,7 +604,7 @@ button {
 }
 
 .feature-description {
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   color: v.$color-text-base;
 }
 
@@ -547,7 +655,7 @@ button {
 
 .trusted-text {
   text-align: center;
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   color: v.$color-text-base;
 }
 
@@ -595,13 +703,13 @@ button {
 }
 
 .service-description {
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   flex-grow: 1;
   color: v.$color-text-base;
 }
 .platform-description{
   color: v.$color-text-base;
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   max-width: 800px;
   margin: 0 auto;
   margin-bottom: v.$spacing-xl;
@@ -784,7 +892,7 @@ button {
 }
 
 .video-quote {
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   color: v.$color-text-base;
 }
 
@@ -837,7 +945,7 @@ button {
   color: v.$color-secondary;
   font-size: v.$font-size-base;
   font-weight: v.$font-weight-bold;
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   flex: 1;
 }
 
@@ -877,7 +985,7 @@ button {
 
 .faq-content {
   color: v.$color-secondary;
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   max-height: 0;
   overflow: hidden;
   @include m.smooth-transition(max-height, 0.4s);
@@ -971,7 +1079,7 @@ button {
 .cta-description {
   color: v.$white;
   text-align: center;
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   margin-bottom: v.$spacing-sm;
 }
 
@@ -1007,7 +1115,7 @@ button {
 
 .footer-tagline {
   font-size: v.$font-size-base;
-  line-height: v.$line-height-base;
+  line-height: v.$line-height-normal;
   margin-top: v.$spacing-sm;
 }
 
